@@ -51,7 +51,7 @@ const Player = () => {
 			) : (
 				<i className='fas fa-times-circle text-danger' />
 			)}
-			<div className='card grid-2'>
+			<div className='card grid-2 all-center'>
 				<div className='all-center'>
 					<img
 						src={`https://cms.nhl.bamgrid.com/images/headshots/current/168x168/${id}.jpg`}

@@ -55,12 +55,19 @@ const NHLState = (props) => {
 		});
 	};
 
-	// Clear Users from State
+	// Get Player Data from NHL API
 	const getPlayer = async (id) => {
 		setLoading();
 
 		const req = await fetch(`https://statsapi.web.nhl.com/api/v1/people/${id}`);
 		const res = await req.json();
+
+		const req2 = await fetch(
+			`https://statsapi.web.nhl.com/api/v1/people/${id}/stats?stats=yearByYear`
+		);
+		const res2 = await req2.json();
+
+		res.people[0].stats = res2.stats[0].splits;
 
 		dispatch({
 			type: GET_PLAYER,

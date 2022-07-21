@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PlayerItem = ({ player }) => {
 	return (
-		<div className='card'>
+		<div className='card-secondary'>
 			<h3>
 				<Link to={`/player/${player.person.id}`}>
 					{player.person.fullName} - # {player.jerseyNumber} (

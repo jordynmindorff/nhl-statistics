@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Team from './components/teams/Team';
@@ -25,6 +26,7 @@ function App() {
 							<Route path='*' element={<NotFound />} />
 						</Routes>
 					</div>
+					<Footer />
 				</div>
 			</Router>
 		</NHLState>

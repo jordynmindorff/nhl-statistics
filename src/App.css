@@ -15,12 +15,18 @@
 	padding: 0;
 }
 
-body {
+.App {
 	font-family: 'Roboto', sans-serif;
 	font-size: 1rem;
 	line-height: 1.6;
 	background-color: #fff;
 	color: #333;
+
+	min-height: 100vh;
+	margin: 0;
+
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }
 
 a {
@@ -42,10 +48,9 @@ img {
 
 /* Utilities */
 .container {
-	max-width: 1100px;
-	margin: auto;
-	overflow: hidden;
+	min-width: 90vw;
 	padding: 0 2rem;
+	margin: 0 auto;
 }
 
 /* Text Styles*/
@@ -112,8 +117,16 @@ img {
 /* Cards */
 .card {
 	padding: 1rem;
-	border: #ccc 1px dotted;
 	margin: 0.7rem 0;
+	border-radius: 50px;
+	box-shadow: 5px 2px 8px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-secondary {
+	padding: 1rem;
+	margin: 0.7rem 0;
+	border-radius: 50px;
+	border: 1px solid #ccc;
 }
 
 /* List */
@@ -181,7 +194,7 @@ img {
 .grid-2 {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 1rem;
+	grid-gap: 3rem;
 }
 
 .grid-3 {
@@ -356,6 +369,7 @@ table th {
 	width: 100%;
 	opacity: 0.9;
 	margin-bottom: 1rem;
+	min-height: 50px;
 }
 
 .navbar ul {
@@ -374,6 +388,18 @@ table th {
 
 .navbar .welcome span {
 	margin-right: 0.6rem;
+}
+
+/* Footer */
+footer,
+.footer {
+	width: 100%;
+	text-align: center;
+	min-height: 50px;
+	background: var(--dark-color);
+	color: #fff;
+	padding: 0.5rem 0;
+	margin-top: 1rem;
 }
 
 /* Mobile Styles */

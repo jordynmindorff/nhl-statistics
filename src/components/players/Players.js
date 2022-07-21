@@ -3,7 +3,13 @@ import PlayerItem from './PlayerItem';
 import PropTypes from 'prop-types';
 
 const Players = ({ players }) => {
-	return players.map((player) => <PlayerItem player={player} key={player.person.id} />);
+	return (
+		<div className='grid-3'>
+			{players.map((player) => (
+				<PlayerItem player={player} key={player.person.id} />
+			))}
+		</div>
+	);
 };
 
 Players.propTypes = {

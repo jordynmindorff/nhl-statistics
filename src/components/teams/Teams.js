@@ -15,18 +15,12 @@ const Teams = () => {
 
 	if (loading) return <Spinner />;
 	return (
-		<div style={usersStyle}>
+		<div className='grid-3'>
 			{teams.map((team) => {
 				return <TeamItem key={team.id} team={team} />;
 			})}
 		</div>
 	);
-};
-
-const usersStyle = {
-	display: 'grid',
-	gridTemplateColumns: 'repeat(3, 1fr)',
-	gridGap: '1rem',
 };
 
 export default Teams;

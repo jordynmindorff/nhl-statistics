@@ -37,7 +37,7 @@ const Team = () => {
 				Back to Teams
 			</Link>
 
-			<div className='card grid-2'>
+			<div className='card grid-2 all-center'>
 				<div className='all-center'>
 					<img
 						src={`https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/${id}.svg`}

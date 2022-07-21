@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const TeamItem = ({ team }) => {
-	// 		    <img src={avatar_url} alt='Avatar' className='round-img' style={{ width: '60px' }} />
 	return (
 		<div className='card text-center'>
+			<img
+				src={`https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/${team.id}.svg`}
+				alt='Avatar'
+				style={{ width: '60px' }}
+			/>
+
 			<h3>
 				{team.name} ({team.abbreviation})
 			</h3>

@@ -8,22 +8,19 @@ const Teams = () => {
 	const { getTeams, teams, loading } = nhlContext;
 
 	useEffect(() => {
-		getTeams();
+		if (teams.length === 0) getTeams();
 
 		// eslint-disable-next-line
 	}, []);
 
-	if (loading) {
-		return <Spinner />;
-	} else {
-		return (
-			<div style={usersStyle}>
-				{teams.map((team) => {
-					return <TeamItem key={team.id} team={team} />;
-				})}
-			</div>
-		);
-	}
+	if (loading) return <Spinner />;
+	return (
+		<div style={usersStyle}>
+			{teams.map((team) => {
+				return <TeamItem key={team.id} team={team} />;
+			})}
+		</div>
+	);
 };
 
 const usersStyle = {

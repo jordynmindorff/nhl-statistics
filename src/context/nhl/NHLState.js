@@ -18,15 +18,13 @@ const NHLState = (props) => {
 	const getTeams = async () => {
 		setLoading();
 
-		setTimeout(async () => {
-			const req = await fetch('https://statsapi.web.nhl.com/api/v1/teams');
-			const res = await req.json();
+		const req = await fetch('https://statsapi.web.nhl.com/api/v1/teams');
+		const res = await req.json();
 
-			dispatch({
-				type: GET_TEAMS,
-				payload: res.teams,
-			});
-		}, 1000);
+		dispatch({
+			type: GET_TEAMS,
+			payload: res.teams,
+		});
 	};
 
 	// Get A Single NHL Team
@@ -82,7 +80,7 @@ const NHLState = (props) => {
 				team: state.team,
 				roster: state.roster,
 				player: state.player,
-				loading: false,
+				loading: state.loading,
 				getTeams,
 				getTeam,
 				getRoster,

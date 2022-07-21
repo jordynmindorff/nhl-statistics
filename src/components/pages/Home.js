@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
+import Teams from '../teams/Teams';
 
 const Home = () => {
 	return (
 		<Fragment>
-			<h1>Test</h1>
+			<Teams />
 		</Fragment>
 	);
 };

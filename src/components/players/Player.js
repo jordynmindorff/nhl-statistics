@@ -1,7 +1,6 @@
-// https://cms.nhl.bamgrid.com/images/actionshots/8474612.jpg
-
 import React, { Fragment, useEffect, useContext } from 'react';
 import Spinner from '../layout/Spinner';
+import Stats from './Stats';
 import { Link, useMatch } from 'react-router-dom';
 import NHLContext from '../../context/nhl/nhlContext';
 import * as countryIsoConvert from 'country-iso-3-to-2';
@@ -32,6 +31,7 @@ const Player = () => {
 		weight,
 		currentTeam,
 		primaryPosition,
+		stats,
 	} = player;
 
 	let countryCode;
@@ -120,6 +120,7 @@ const Player = () => {
 					</ul>
 				</div>
 			</div>
+			<Stats stats={stats} pos={primaryPosition.abbreviation} />
 		</Fragment>
 	);
 };

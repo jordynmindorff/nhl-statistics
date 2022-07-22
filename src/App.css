@@ -22,6 +22,9 @@
 	background-color: #fff;
 	color: #333;
 
+	max-width: 100vw;
+	overflow: hidden;
+
 	min-height: 100vh;
 	margin: 0;
 
@@ -48,9 +51,10 @@ img {
 
 /* Utilities */
 .container {
-	min-width: 90vw;
+	max-width: 90vw;
 	padding: 0 2rem;
 	margin: 0 auto;
+	overflow: hidden;
 }
 
 /* Text Styles*/
@@ -349,6 +353,20 @@ button {
 	font: inherit;
 }
 
+/* Tables */
+.table-wrapper {
+	position: relative;
+}
+
+.table-scroll {
+	overflow: auto;
+}
+
+table {
+	overflow: auto;
+	width: 100%;
+}
+
 table th,
 table td {
 	padding: 1rem;
@@ -357,6 +375,10 @@ table td {
 
 table th {
 	background: var(--light-color);
+}
+
+tr:nth-child(even) {
+	background-color: var(--light-color);
 }
 
 /* Navbar */

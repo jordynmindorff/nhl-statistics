@@ -1,4 +1,12 @@
-import { GET_TEAMS, GET_TEAM, GET_ROSTER, GET_PLAYER, SET_LOADING } from '../types';
+import {
+	GET_TEAMS,
+	GET_TEAM,
+	GET_ROSTER,
+	GET_PLAYER,
+	SET_LOADING,
+	SEARCH_PLAYERS,
+	CLEAR_PLAYERS,
+} from '../types';
 
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -34,6 +42,20 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				loading: true,
+			};
+
+		case SEARCH_PLAYERS:
+			return {
+				...state,
+				players: action.payload,
+				loading: false,
+			};
+
+		case CLEAR_PLAYERS:
+			return {
+				...state,
+				players: [],
+				loading: false,
 			};
 
 		default:

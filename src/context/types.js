@@ -3,3 +3,7 @@ export const GET_TEAM = 'GET_TEAM';
 export const GET_ROSTER = 'GET_ROSTER';
 export const GET_PLAYER = 'GET_PLAYER';
 export const SET_LOADING = 'SET_LOADING';
+export const SEARCH_PLAYERS = 'SEARCH_PLAYERS';
+export const CLEAR_PLAYERS = 'CLEAR_PLAYERS';
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';

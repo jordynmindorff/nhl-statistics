@@ -42,9 +42,15 @@ const Player = () => {
 
 	return (
 		<Fragment>
-			<Link to={`/team/${currentTeam.id}`} className='btn btn-light'>
-				Back to Player Team
-			</Link>
+			{currentTeam ? (
+				<Link to={`/team/${currentTeam.id}`} className='btn btn-light'>
+					Back to Player Team
+				</Link>
+			) : (
+				<Link to={`/`} className='btn btn-light'>
+					Back to Home
+				</Link>
+			)}
 			Active:{' '}
 			{active ? (
 				<i className='fas fa-check text-success' />
@@ -60,7 +66,7 @@ const Player = () => {
 						style={{ width: '150px' }}
 					/>
 					<h1>{fullName}</h1>
-					<p>Current Team: {currentTeam.name}</p>
+					{currentTeam ? <p>Current Team: {currentTeam.name}</p> : null}
 				</div>
 				<div>
 					<ul>
@@ -80,9 +86,14 @@ const Player = () => {
 							)}
 						</li>
 						<li>
-							{currentAge && (
+							{currentAge ? (
 								<Fragment>
 									<strong>Age (Birth Date): </strong> {currentAge} ({birthDate})
+								</Fragment>
+							) : (
+								<Fragment>
+									<strong>Birth Date: </strong>
+									{birthDate}
 								</Fragment>
 							)}
 						</li>

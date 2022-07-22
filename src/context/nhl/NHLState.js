@@ -1,13 +1,22 @@
 import React, { useReducer } from 'react';
 import NHLContext from './nhlContext';
 import nhlReducer from './nhlReducer';
-import { GET_TEAMS, GET_TEAM, GET_ROSTER, GET_PLAYER, SET_LOADING } from '../types';
+import {
+	GET_TEAMS,
+	GET_TEAM,
+	GET_ROSTER,
+	GET_PLAYER,
+	SET_LOADING,
+	SEARCH_PLAYERS,
+	CLEAR_PLAYERS,
+} from '../types';
 
 const NHLState = (props) => {
 	const initialState = {
 		teams: [],
 		team: {},
 		roster: [],
+		players: [],
 		player: {},
 		loading: false,
 	};
@@ -18,7 +27,9 @@ const NHLState = (props) => {
 	const getTeams = async () => {
 		setLoading();
 
-		const req = await fetch('https://statsapi.web.nhl.com/api/v1/teams');
+		const req = await fetch(
+			`${process.env.REACT_APP_PROXY_URL}https://statsapi.web.nhl.com/api/v1/teams`
+		);
 		const res = await req.json();
 
 		dispatch({
@@ -31,7 +42,9 @@ const NHLState = (props) => {
 	const getTeam = async (id) => {
 		setLoading();
 
-		const req = await fetch(`https://statsapi.web.nhl.com/api/v1/teams/${id}`);
+		const req = await fetch(
+			`${process.env.REACT_APP_PROXY_URL}https://statsapi.web.nhl.com/api/v1/teams/${id}`
+		);
 		const res = await req.json();
 
 		dispatch({
@@ -45,7 +58,7 @@ const NHLState = (props) => {
 		setLoading();
 
 		const req = await fetch(
-			`https://statsapi.web.nhl.com/api/v1/teams/${id}?expand=team.roster`
+			`${process.env.REACT_APP_PROXY_URL}https://statsapi.web.nhl.com/api/v1/teams/${id}?expand=team.roster`
 		);
 		const res = await req.json();
 
@@ -59,11 +72,13 @@ const NHLState = (props) => {
 	const getPlayer = async (id) => {
 		setLoading();
 
-		const req = await fetch(`https://statsapi.web.nhl.com/api/v1/people/${id}`);
+		const req = await fetch(
+			`${process.env.REACT_APP_PROXY_URL}https://statsapi.web.nhl.com/api/v1/people/${id}`
+		);
 		const res = await req.json();
 
 		const req2 = await fetch(
-			`https://statsapi.web.nhl.com/api/v1/people/${id}/stats?stats=yearByYear`
+			`${process.env.REACT_APP_PROXY_URL}https://statsapi.web.nhl.com/api/v1/people/${id}/stats?stats=yearByYear`
 		);
 		const res2 = await req2.json();
 
@@ -72,6 +87,42 @@ const NHLState = (props) => {
 		dispatch({
 			type: GET_PLAYER,
 			payload: res.people[0],
+		});
+	};
+
+	// Search Players
+	const searchPlayers = async (query) => {
+		setLoading();
+
+		const req = await fetch(
+			`${process.env.REACT_APP_PROXY_URL}https://suggest.svc.nhl.com/svc/suggest/v1/minplayers/${query}`
+		);
+		const res = await req.json();
+
+		const formatted = res.suggestions.map((player) => {
+			const firstBar = player.indexOf('|');
+			const secondBar = player.indexOf('|', firstBar + 1);
+			const thirdBar = player.indexOf('|', secondBar + 1);
+
+			return {
+				id: Number(player.substring(0, firstBar)),
+				fullName:
+					player.substring(secondBar + 1, thirdBar) +
+					' ' +
+					player.substring(firstBar + 1, secondBar),
+			};
+		});
+
+		dispatch({
+			type: SEARCH_PLAYERS,
+			payload: formatted,
+		});
+	};
+
+	// Clear Players from State
+	const clearPlayers = async () => {
+		dispatch({
+			type: CLEAR_PLAYERS,
 		});
 	};
 
@@ -87,12 +138,15 @@ const NHLState = (props) => {
 				team: state.team,
 				roster: state.roster,
 				player: state.player,
+				players: state.players,
 				loading: state.loading,
 				getTeams,
 				getTeam,
 				getRoster,
 				getPlayer,
 				setLoading,
+				clearPlayers,
+				searchPlayers,
 			}}>
 			{props.children}
 		</NHLContext.Provider>

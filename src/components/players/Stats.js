@@ -1,7 +1,7 @@
 import React, { useState, useRef, Fragment } from 'react';
 import { formatYearsToSeason } from '../../utils/seasonFormat';
 
-function Stats({ stats, pos }) {
+const Stats = ({ stats, pos }) => {
 	const [nhlOnly, setNHLOnly] = useState(false);
 	const useStats = useRef(stats);
 
@@ -178,7 +178,7 @@ function Stats({ stats, pos }) {
 			)}
 		</Fragment>
 	);
-}
+};
 
 const tableStyles = {
 	margin: '0 auto',

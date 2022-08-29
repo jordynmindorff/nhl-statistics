@@ -83,6 +83,7 @@ const NHLState = (props) => {
 		const res2 = await req2.json();
 
 		res.people[0].stats = res2.stats[0].splits;
+		res.people[0].stats = res.people[0].stats.reverse();
 
 		dispatch({
 			type: GET_PLAYER,

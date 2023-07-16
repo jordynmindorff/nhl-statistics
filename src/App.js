@@ -13,8 +13,9 @@ import AlertState from './context/alert/AlertState';
 import './App.css';
 import 'flag-icons/css/flag-icons.css';
 
-function App() {
+const App = () => {
 	return (
+		// Wrap main routing, styling containers, and Alert component in AlertState and main NHL data state contexts
 		<NHLState>
 			<AlertState>
 				<Router>
@@ -36,6 +37,6 @@ function App() {
 			</AlertState>
 		</NHLState>
 	);
-}
+};
 
 export default App;

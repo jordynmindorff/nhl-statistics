@@ -23,6 +23,7 @@ const Navbar = ({ icon, title }) => {
 	);
 };
 
+// Prop implementation mostly useless for this case, but why not try it out
 Navbar.defaultProps = {
 	title: 'NHL Statistics',
 	icon: 'fas fa-hockey-puck',

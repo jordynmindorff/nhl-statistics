@@ -9,12 +9,11 @@ const Teams = () => {
 
 	useEffect(() => {
 		if (teams.length === 0) getTeams();
+	}, [teams, getTeams]);
 
-		// eslint-disable-next-line
-	}, []);
-
-	if (loading) return <Spinner />;
-	return (
+	return loading ? (
+		<Spinner />
+	) : (
 		<div className='grid-3'>
 			{teams.map((team) => {
 				return <TeamItem key={team.id} team={team} />;
